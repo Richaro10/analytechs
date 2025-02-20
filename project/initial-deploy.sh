@@ -4,7 +4,7 @@
 FRONTEND_DIR="/var/www/analytechs/frontend"
 BACKEND_DIR="/var/www/analytechs/backend"
 TEMP_DIR="/tmp/analytechs"
-GITHUB_REPO="votre_url_github"
+GITHUB_REPO="https://github.com/Richaro10/analytechs"
 
 # Création des répertoires
 echo "Création des répertoires..."
