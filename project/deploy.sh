@@ -28,9 +28,10 @@ git pull origin main
 npm ci
 NODE_ENV=production npm run build
 
-# Redémarrage des services
+# Redémarrage des services avec la nouvelle configuration PM2
 echo "Redémarrage des services..."
-pm2 restart analytechs-strapi || pm2 start "npm run start" --name analytechs-strapi
+pm2 delete analytechs-strapi 2>/dev/null || true
+pm2 start ecosystem.config.js
 sudo systemctl reload nginx
 
 echo "Déploiement terminé avec succès !"
