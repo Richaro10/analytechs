@@ -1,0 +1,14 @@
+{
+  "name": "analytechs-theme",
+  "version": "1.0.0",
+  "description": "Thème WordPress Analytechs",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.min.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./assets/css/tailwind.min.css --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
+}
