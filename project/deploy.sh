@@ -5,9 +5,12 @@ APP_DIR="/var/www/analytechs"
 FRONTEND_DIR="$APP_DIR/frontend"
 BACKEND_DIR="$APP_DIR/backend"
 BACKUP_DIR="/var/backups/analytechs"
+TEMP_DIR="/tmp/analytechs_deploy"
 
-# Création du répertoire de backup
-sudo mkdir -p $BACKUP_DIR
+# Création des répertoires
+echo "Préparation du déploiement..."
+sudo mkdir -p $BACKUP_DIR $TEMP_DIR
+sudo chown -R $USER:$USER $TEMP_DIR
 
 # Backup de la base de données
 echo "Création d'une sauvegarde de la base de données..."
@@ -28,10 +31,14 @@ git pull origin main
 npm ci
 NODE_ENV=production npm run build
 
-# Redémarrage des services avec la nouvelle configuration PM2
+# Redémarrage des services
 echo "Redémarrage des services..."
 pm2 delete analytechs-strapi 2>/dev/null || true
 pm2 start ecosystem.config.js
 sudo systemctl reload nginx
+
+# Nettoyage
+echo "Nettoyage..."
+rm -rf $TEMP_DIR
 
 echo "Déploiement terminé avec succès !"
